@@ -1,5 +1,4 @@
-# Textual Inversion
-
+# Policy Optimized Text-to-Image Pipeline Design
 This is the repository that contains source code for the [Policy Optimized Text-to-Image Pipeline Design
  website]().
 
