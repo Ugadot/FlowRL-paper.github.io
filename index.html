@@ -8,9 +8,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Indie+Flower&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Cool Slate & Indigo -->
-    <!-- Application Structure Plan: The SPA is structured as a narrative, single-page scroll. It starts with the main title, followed by author information, a TL;DR summary of the method, a key results image, the core problem (manual workflows), FlowRL as the solution (linear flow), a dedicated section on encoding efficiency, refined results sections focusing on Prompt Adherence, User Preference, and Workflow Novelty (with text, images, and an interactive chart), and concludes with other qualitative examples and a dedicated citation section. This revised linear flow, augmented with visuals and academic referencing, is designed to guide the user intuitively from core information to detailed evidence and proper citation. -->
+    <!-- Application Structure Plan: The SPA is structured as a narrative, single-page scroll. It starts with the main title, followed by author information, a TL;DR summary of the method, a key results image, the core problem (manual workflows), FlowRL as the solution (linear flow), a dedicated section on encoding efficiency, refined results sections focusing on Prompt Adherence, User Preference, Workflow Novelty, and Dual Model Guidance improvement (with text, images, and interactive carousels), and concludes with a dedicated citation section. This revised linear flow, augmented with visuals and academic referencing, is designed to guide the user intuitively from core information to detailed evidence and proper citation. -->
     <!-- Visualization & Content Choices: 
         - Hero Section: Goal: Introduce. Method: Main title, author info. Justification: Provides immediate context and authorship.
         - TL;DR: Goal: Inform/Summarize. Method: Text and image placeholder. Justification: Provides a quick overview for users who want the gist, now positioned prominently after author info.
@@ -20,11 +20,11 @@
         - Encoding Efficiency: Goal: Inform. Method: Text and image placeholder. Justification: Details a crucial technical contribution, highlighting its empirical benefits.
         - Surrogate Reward Model: Goal: Inform. Method: Styled HTML/CSS block with new image placeholder for training scheme. Justification: Clearly highlights the core innovation and its training process.
         - Efficient & Precise Training: Goal: Inform. Method: List of features. Justification: Summarizes key technical aspects concisely.
-        - Guided Inference: Goal: Inform. Method: Text block. Justification: Explains the inference strategy.
-        - Results (Updated): Goal: Evaluate/Compare. Method: Revamped section with distinct blocks for "Prompt Adherence & Qualitative Comparison," "User Preference," and "Workflow Novelty." Justification: Provides a clear, modular, and engaging presentation of all key results, both quantitative and qualitative, including interactive carousels and chart for a comprehensive understanding.
+        - Guided Inference: Goal: Inform. Method: Text block. Justification: Explains the inference inference strategy.
+        - Results (Updated): Goal: Evaluate/Compare. Method: Revamped section with distinct blocks for "Prompt Adherence & Qualitative Comparison," "User Preference," "Workflow Novelty," and a new "Dual Model Guidance Improvement" block. Justification: Provides a clear, modular, and engaging presentation of all key results, both quantitative and qualitative, including interactive carousels for comprehensive understanding.
         - Performance Comparison (Removed): Goal: Compare. Method: Chart.js Grouped Bar Chart. Justification: Consolidated into the "Prompt Adherence" and "User Preference" discussions for better thematic grouping.
         - Novelty Analysis (Removed): Goal: Explore Change. Method: Interactive buttons controlling a Chart.js Donut Chart. Justification: Replaced by the dedicated "Workflow Novelty" section with a table placeholder for a more direct presentation of the data.
-        - Qualitative Samples: Goal: Illustrate/Engage. Method: Grid of placeholder images with captions referring to paper figures. Justification: Provides direct visual evidence of FlowRL's output quality and diversity, enhancing impact, with clear references for deep dive.
+        - Qualitative Samples (Removed): Goal: Illustrate/Engage. Method: Grid of placeholder images with captions referring to paper figures. Justification: All qualitative examples are now integrated into the results sections where they are most relevant for direct comparison.
         - Citation: Goal: Inform. Method: Preformatted text block. Justification: Provides standard academic citation for easy referencing.
         - Footnote: Goal: Inform. Method: Text link. Justification: Provides context for a key term.
     -->
@@ -115,6 +115,18 @@
             right: 1rem;
         }
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'indie-flower': ['"Indie Flower"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="antialiased">
 
@@ -127,9 +139,8 @@
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#tldr" class="font-medium text-slate-600 hover:text-indigo-600 transition-colors">TL;DR</a>
-                    <a href="#challenge" class="font-medium text-slate-600 hover:text-indigo-600 transition-colors">The Challenge</a>
+                    <a href="#challenge" class="font-medium text-slate-600 hover:text-indigo-600 transition-colors">The Problem</a>
                     <a href="#solution" class="font-medium text-slate-600 hover:text-indigo-600 transition-colors">The Solution</a>
-                    <a href="#encoding-efficiency" class="font-medium text-slate-600 hover:text-indigo-600 transition-colors">Encoding</a>
                     <a href="#results" class="font-medium text-slate-600 hover:text-indigo-600 transition-colors">Results</a>
                     <a href="#citation" class="font-medium text-slate-600 hover:text-indigo-600 transition-colors">Cite Us</a>
                 </div>
@@ -158,17 +169,18 @@
         <section id="tldr" class="text-center mb-20 md:mb-24 section-fade-in">
             <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">TL;DR</h2>
             <p class="max-w-3xl mx-auto text-lg text-slate-600 mb-8">
-                We uses Reinforcement Learning to automatically design optimized text-to-image workflows. We train an LLM to generate these workflows, guided by a "smart" reward model that predicts image quality without expensive image generation, leading to novel and high-quality results.
+                We uses Reinforcement Learning to automatically design optimized text-to-image workflows. We train an LLM to generate these workflows, guided by a reward model that predicts image quality without expensive image generation, leading to novel and high-quality results.
             </p>
             <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border border-slate-200">
-                <img src="https://placehold.co/700x400/c7d2fe/4f46e5?text=FlowRL+Method+Diagram+(Replace+Me)" alt="FlowRL Method Diagram Placeholder" class="w-full h-auto rounded-lg object-contain">
-                <p class="text-center text-sm text-slate-500 mt-2">Figure: High-level overview of the FlowRL method.</p>
+                <!-- IMPORTANT: Please convert your PDF diagram to a PNG or JPG and use its raw GitHub URL here. -->
+                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/training_pipe.png" onerror="this.onerror=null;this.src='https://placehold.co/700x400/c7d2fe/4f46e5?text=FlowRL+Method+Diagram+(Provide+PNG/JPG+URL)'; this.alt='FlowRL Method Diagram Placeholder';" alt="FlowRL Method Diagram" class="w-full h-auto rounded-lg object-contain">
+                <p class="text-center text-sm text-slate-500 mt-2">High-level overview of the FlowRL method.</p>
             </div>
             <!-- New section for key results image -->
             <div class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-lg border border-slate-200 mt-12">
-                <h3 class="text-2xl font-bold text-slate-800 mb-4">Key Results at a Glance</h3>
-                <img src="https://placehold.co/800x450/4f46e5/ffffff?text=Key+Results+Image+(Replace+Me)" alt="Key Results Summary Image" class="w-full h-auto rounded-lg object-contain">
-                <p class="text-center text-sm text-slate-500 mt-2">Figure: Visual summary of FlowRL's performance in generating high-quality and novel text-to-image workflows.</p>
+                <h3 class="text-2xl font-bold text-slate-800 mb-4">Generated images using our method</h3>
+                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/example.png" onerror="this.onerror=null;this.src='https://placehold.co/800x450/4f46e5/ffffff?text=Key+Results+Image';" alt="Key Results Summary Image" class="w-full h-auto rounded-lg object-contain">
+                <p class="text-center text-sm text-slate-500 mt-2">Visual examples of images produced by workflows generated by FlowRL.</p>
             </div>
         </section>
 
@@ -176,7 +188,7 @@
         <!-- The Challenge Section -->
         <section id="challenge" class="mb-20 md:mb-24 section-fade-in">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">The Manual Grind of Modern Pipelines</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">The Manual grind of creating T2I workflow</h2>
                 <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
                     Tools like ComfyUI<sup id="fnref-1" class="text-indigo-600"><a href="#footnote-1" class="no-underline text-indigo-600 hover:underline">[1]</a></sup> use powerful, modular pipelines. But designing them is a complex, manual task that's difficult to scale and master.
                 </p>
@@ -194,7 +206,7 @@
         <!-- The Solution Section (Linear Flow) -->
         <section id="solution" class="mb-20 md:mb-24 section-fade-in">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">FlowRL: The Automated Solution</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Our solution: FlowRL</h2>
                 <p class="mt-4 max-w-3xl mx-auto text-lg text-slate-600">
                     FlowRL formulates workflow generation as a policy optimization problem, using a two-stage process to learn how to build the best pipeline for any given prompt.
                 </p>
@@ -203,24 +215,22 @@
             <div class="max-w-4xl mx-auto space-y-8">
                 <!-- New Section: An efficient way to encode ComfyUI workflows (Moved) -->
                 <div id="encoding-efficiency" class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
-                    <h3 class="text-2xl font-bold text-slate-800 mb-4">An Efficient Way to Encode ComfyUI Workflows</h3>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">1. An Efficient Way to Encode ComfyUI Workflows</h3>
                     <p class="text-slate-600 mb-6">
                         Processing complex ComfyUI workflows with LLMs requires an efficient representation. We developed a specialized tokenization scheme that dramatically reduces the token count without losing structural information.
                     </p>
                     <div class="max-w-xl mx-auto">
-                        <img src="https://placehold.co/700x400/a78bfa/ffffff?text=Encoding+Mechanism+Image+(Figure+from+Paper)" alt="Workflow Encoding Diagram" class="w-full h-auto rounded-lg mb-2 object-contain">
-                        <p class="text-center text-sm text-slate-500 mt-2">Figure: Our efficient flow encoding mechanism, converting verbose JSON into a compact token sequence.</p>
+                        <!-- Replace with your actual image URL from GitHub -->
+                        <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/encoded_more.png" onerror="this.onerror=null;this.src='https://placehold.co/700x400/a78bfa/ffffff?text=Encoding+Mechanism+Image';" alt="Workflow Encoding Diagram" class="w-full h-auto rounded-lg mb-2 object-contain">
+                        <p class="text-center text-sm text-slate-500 mt-2">Example of our efficient flow encoding mechanism, converting the original verbose JSON (a) into a compact token sequence. (b)</p>
                     </div>
-                    <p class="text-slate-600 mt-6">
-                        Empirical results highlight the power of this encoding: it achieves an **86.7% reduction in token count** per workflow. This efficiency translates to significant gains, enabling **16 times larger batch sizes** and accelerating training by **3 times**, thereby making large-scale reinforcement learning for workflow generation feasible.
-                    </p>
                 </div>
 
                 <!-- Section 1: Core Engine (Surrogate Reward Model) -->
                 <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
-                    <h3 class="text-2xl font-bold text-slate-800 mb-4">Surrogate Reward Model: The "Smart Signal"</h3>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">2. Surrogate Reward Model</h3>
                     <p class="text-slate-600 mb-6">Generating images during training is incredibly expensive. FlowRL's key innovation is a surrogate reward model that predicts the final image quality score by looking at only the prompt and the proposed workflow. This allows for rapid, compute-efficient optimization.</p>
-                    <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg">
+                    <!-- <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg">
                          <div class="font-mono text-slate-700 text-center text-sm md:text-base">
                             <span>( Prompt + Workflow )</span>
                             <span class="mx-4 text-indigo-400">&rarr;</span>
@@ -228,14 +238,17 @@
                             <span class="mx-4 text-indigo-400">&rarr;</span>
                             <span class="font-bold text-indigo-600">Predicted Quality Score</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="max-w-xl mx-auto mt-6">
-                        <img src="https://placehold.co/700x400/fecaca/dc2626?text=Reward+Model+Training+Scheme+(Figure+from+Paper)" alt="Reward Model Training Scheme" class="w-full h-auto rounded-lg mb-2 object-contain">
-                        <p class="text-center text-sm text-slate-500 mt-2">Figure: The training scheme for the surrogate reward model, demonstrating how it learns to predict image quality from prompt-workflow pairs.</p>
+                        <!-- Replace with your actual image URL from GitHub -->
+                        <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/reward_model.png" onerror="this.onerror=null;this.src='https://placehold.co/700x400/fecaca/dc2626?text=Reward+Model+Training+Scheme';" alt="Reward Model Training Scheme" class="w-full h-auto rounded-lg mb-2 object-contain">
+                        <p class="text-center text-sm text-slate-500 mt-2">The training scheme for the surrogate reward model which predicts image quality from prompt-workflow pairs.</p>
                     </div>
                 </div>
 
                 <!-- Section 2: Smart Training -->
+                <!-- This section is commented out as per user request. To re-enable, remove the <!-- and -->
+                <!--
                 <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
                     <h3 class="text-2xl font-bold text-slate-800 mb-4">Efficient & Precise Training</h3>
                     <p class="text-slate-600 mb-6">To improve robustness and generalization, we use several advanced techniques during the training phase:</p>
@@ -250,10 +263,11 @@
                         </li>
                     </ul>
                 </div>
+                -->
 
                 <!-- Section 3: Guided Inference -->
                 <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
-                    <h3 class="text-2xl font-bold text-slate-800 mb-4">Dual-Model Guidance</h3>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">3. Dual-Model Guidance</h3>
                     <p class="text-slate-600">During inference (when generating a workflow for a user), we use the outputs of the original supervised model and the new RL-tuned model. This strategy, inspired by Classifier-Free Guidance (CFG), allows us to balance exploration and optimization, leading to higher-quality outputs while maintaining workflow diversity.</p>
                 </div>
             </div>
@@ -264,51 +278,59 @@
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Results</h2>
                 <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
-                    We extensively evaluated FlowRL against established baselines, measuring its performance on prompt adherence, user preference, and workflow novelty.
+                    We evaluated FlowRL against established baselines, measuring its performance on prompt adherence, user preference, and workflow novelty.
                 </p>
             </div>
             
             <div class="max-w-4xl mx-auto space-y-8">
                 <!-- Combined Prompt Adherence & Qualitative Comparison Section -->
                 <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
-                    <h3 class="text-2xl font-bold text-slate-800 mb-4">Prompt Adherence & Qualitative Comparison</h3>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">Prompt Adherence</h3>
                     <p class="text-slate-600 mb-6">
-                        To quantify how well generated images adhere to input prompts, we utilized the GenEval metric. Our results show FlowRL is highly effective in producing images that accurately reflect the textual descriptions, matching state-of-the-art methods like ComfyGen. Additionally, explore the visual examples below to see our model's adherence and quality in action.
+                        To quantify how well generated images adhere to input prompts, we utilized the GenEval metric. We compared FlowRL generate images to other baselines. Our results show FlowRL's prompt adherence matches best baseline.
                     </p>
                     <div class="max-w-xl mx-auto">
-                        <img src="https://placehold.co/700x400/818cf8/ffffff?text=GenEval+Results+Metrics+Figure+(Figure+from+Paper)" alt="GenEval Results" class="w-full h-auto rounded-lg mb-2 object-contain">
-                        <p class="text-center text-sm text-slate-500 mt-2 mb-8">Figure: Comparison of prompt adherence (GenEval) scores for FlowRL against various baselines.</p>
+                        <!-- Corrected image path for GenEval results figure -->
+                        <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/geneval_table.png" onerror="this.onerror=null;this.src='https://placehold.co/700x400/818cf8/ffffff?text=GenEval+Results+Metrics+Figure';" alt="GenEval Results" class="w-full h-auto rounded-lg mb-2 object-contain">
+                        <p class="text-center text-sm text-slate-500 mt-2 mb-8">Comparison of prompt adherence (GenEval) scores for FlowRL against various baselines.</p>
                     </div>
 
-                    <!-- Interactive Image Carousel for Examples -->
-                    <h4 class="text-xl font-bold text-slate-800 mb-4">Qualitative Examples: See the Difference</h4>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Examples</h3>
                     <p class="text-slate-600 mb-6">
-                        Explore images generated by FlowRL alongside outputs from other methods.
+                        Images generated using output flows of FlowRL alongside outputs from other methods.
                     </p>
                     <div class="image-carousel">
                         <div id="carouselImages" class="carousel-images-container">
                             <!-- Example Image 1 -->
                             <div class="carousel-image-item">
-                                <img src="https://placehold.co/600x300/e0e7ff/3730a3?text=FlowRL+Output+1" alt="FlowRL Output Example 1">
+                                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/gen_example_1.png" alt="FlowRL Output Example 1" class="w-full h-48 object-contain">
                                 <div class="carousel-caption">
-                                    <h4 class="font-semibold text-slate-800">Prompt: "A cozy treehouse in a magical forest, volumetric lighting, fantasy art."</h4>
-                                    <p class="text-xs text-slate-600">FlowRL result vs. Baseline (refer to paper for full comparison)</p>
+                                    <h4 class="font-indie-flower font-semibold text-slate-800">Prompt: "a photo of a brown car and a pink hair drier"</h4>
+                                    <p class="text-xs text-slate-600">FlowRL (right) vs. ComfyGen (left) (refer to paper for full comparison)</p>
                                 </div>
                             </div>
                             <!-- Example Image 2 -->
                             <div class="carousel-image-item">
-                                <img src="https://placehold.co/600x300/c7d2fe/4f46e5?text=FlowRL+Output+2" alt="FlowRL Output Example 2">
+                                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/gen_example_2.png" alt="FlowRL Output Example 2" class="w-full h-48 object-contain">
                                 <div class="carousel-caption">
-                                    <h4 class="font-semibold text-slate-800">Prompt: "Abstract neon city landscape, digital painting, vibrant colors."</h4>
-                                    <p class="text-xs text-slate-600">FlowRL result vs. Baseline (refer to paper for full comparison)</p>
+                                    <h4 class="font-indie-flower font-semibold text-slate-800">Prompt: "a photo of a sink and a sports ball"</h4>
+                                    <p class="text-xs text-slate-600">FlowRL (right) vs. JuggernautXL (left) (refer to paper for full comparison)</p>
                                 </div>
                             </div>
                             <!-- Example Image 3 -->
                             <div class="carousel-image-item">
-                                <img src="https://placehold.co/600x300/a5b6f8/3730a3?text=FlowRL+Output+3" alt="FlowRL Output Example 3">
+                                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/gen_example_3.png" alt="FlowRL Output Example 3" class="w-full h-48 object-contain">
                                 <div class="carousel-caption">
-                                    <h4 class="font-semibold text-slate-800">Prompt: "A robotic cat playing with a laser pointer in a futuristic apartment."</h4>
-                                    <p class="text-xs text-slate-600">FlowRL result vs. Baseline (refer to paper for full comparison)</p>
+                                    <h4 class="font-indie-flower font-semibold text-slate-800">Prompt: "a photo of a frisbee and an apple"</h4>
+                                    <p class="text-xs text-slate-600">FlowRL (right) vs. GenArtist (left) (refer to paper for full comparison)</p>
+                                </div>
+                            </div>
+                            <!-- Example Image 4 -->
+                            <div class="carousel-image-item">
+                                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/gen_example_4.png" alt="FlowRL Output Example 4" class="w-full h-48 object-contain">
+                                <div class="carousel-caption">
+                                    <h4 class="font-indie-flower font-semibold text-slate-800">Prompt: "a photo of a blue baseball bat and a pink book"</h4>
+                                    <p class="text-xs text-slate-600">FlowRL result vs. Most popular flow (left) (refer to paper for full comparison)</p>
                                 </div>
                             </div>
                         </div>
@@ -319,47 +341,57 @@
 
                 <!-- New User Preference Section -->
                 <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
-                    <h3 class="text-2xl font-bold text-slate-800 mb-4">User Preference: What Do Users Actually Prefer?</h3>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">User Preference</h3>
                     <p class="text-slate-600 mb-6">
-                        Beyond automated metrics, we conducted a comprehensive user study using HPSv2 to understand human preference for images generated by FlowRL compared to other state-of-the-art models. Our results clearly show FlowRL's superior qualitative appeal to human evaluators.
+                        We measures user preferences using both automated metrics such as HPSv2 score and actual user study. Our results show FlowRL's superior appeal to human evaluators.
                     </p>
                     <div class="max-w-xl mx-auto">
-                        <img src="https://placehold.co/700x400/93c5fd/1e40af?text=HPSv2+Results+Figure+(Figure+from+Paper)" alt="HPSv2 Results" class="w-full h-auto rounded-lg mb-2 object-contain">
-                        <p class="text-center text-sm text-slate-500 mt-2 mb-8">Figure: Comparison of user preference (HPSv2) scores for FlowRL against various baselines.</p>
+                        <!-- Corrected image path for HPSv2 results figure -->
+                        <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/hps_table.png" onerror="this.onerror=null;this.src='https://placehold.co/700x400/93c5fd/1e40af?text=HPSv2+Results+Figure';" alt="HPSv2 Results" class="w-full h-48 object-contain">
+                        <p class="text-center text-sm text-slate-500 mt-2 mb-8">Comparison of user preference (HPSv2) score win rates for FlowRL against various baselines.</p>
                     </div>
                      <div class="max-w-xl mx-auto">
-                        <img src="https://placehold.co/700x400/a78bfa/ffffff?text=User+Study+Overview+Figure+(Figure+from+Paper)" alt="User Study Overview" class="w-full h-auto rounded-lg mb-2 object-contain">
-                        <p class="text-center text-sm text-slate-500 mt-2 mb-8">Figure: Overview of the user study methodology and setup.</p>
+                        <!-- Corrected image path for user study overview -->
+                        <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/user_study.png" onerror="this.onerror=null;this.src='https://placehold.co/700x400/a78bfa/ffffff?text=User+Study+Overview+Figure';" alt="User Study Overview" class="w-full h-48 object-contain">
+                        <p class="text-center text-sm text-slate-500 mt-2 mb-8">Comparison of user study win rates for FlowRL against various baselines.</p>
                     </div>
 
-                    <h4 class="text-xl font-bold text-slate-800 mb-4">User Preference Comparison Examples</h4>
+                    <h4 class="text-xl font-bold text-slate-800 mb-4 font-inter">User Preference Comparison Examples</h4>
                     <p class="text-slate-600 mb-6">
-                        Below are examples where users consistently preferred FlowRL's output. These demonstrate our model's ability to generate visually stunning and contextually rich images.
+                        Images generated using output flows of FlowRL alongside outputs from other methods.
                     </p>
                     <div class="image-carousel">
                         <div id="userPrefCarouselImages" class="carousel-images-container">
                             <!-- User Preference Example 1 -->
                             <div class="carousel-image-item">
-                                <img src="https://placehold.co/600x300/81e6e6/0a5a5a?text=FlowRL+User+Pref+1" alt="FlowRL User Preference Example 1">
+                                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/civit_example_1.png" alt="FlowRL User Preference Example 1" class="w-full h-48 object-contain">
                                 <div class="carousel-caption">
-                                    <h4 class="font-semibold text-slate-800">Prompt: "A serene Japanese garden with cherry blossoms, golden hour, highly detailed."</h4>
-                                    <p class="text-xs text-slate-600">FlowRL result (preferred) vs. Baseline (refer to paper for full comparison)</p>
+                                    <h4 class="font-indie-flower font-semibold text-slate-800">Prompt: "a victorian gentleman octopus enjoying tea time in an elegant parlor..."</h4>
+                                    <p class="text-xs text-slate-600">FlowRL (right) vs. ComfyGen (left) (refer to paper for full comparison)</p>
                                 </div>
                             </div>
                             <!-- User Preference Example 2 -->
                             <div class="carousel-image-item">
-                                <img src="https://placehold.co/600x300/f8c4b6/5a0a0a?text=FlowRL+User+Pref+2" alt="FlowRL User Preference Example 2">
+                                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/civit_example_2.png" alt="FlowRL User Preference Example 2" class="w-full h-48 object-contain">
                                 <div class="carousel-caption">
-                                    <h4 class="font-semibold text-slate-800">Prompt: "Futuristic spaceship hovering over an alien desert planet, cinematic."</h4>
-                                    <p class="text-xs text-slate-600">FlowRL result (preferred) vs. Baseline (refer to paper for full comparison)</p>
+                                    <h4 class="font-indie-flower font-semibold text-slate-800">Prompt: "a delicate cluster of grapes with cute faces hanging from stem with smiling faces..."</h4>
+                                    <p class="text-xs text-slate-600">FlowRL (right) vs. JuggernautXL (left) (refer to paper for full comparison)</p>
                                 </div>
                             </div>
                             <!-- User Preference Example 3 -->
                             <div class="carousel-image-item">
-                                <img src="https://placehold.co/600x300/b6f8c4/0a5a0a?text=FlowRL+User+Pref+3" alt="FlowRL User Preference Example 3">
+                                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/civit_example_3.png" alt="FlowRL User Preference Example 3" class="w-full h-48 object-contain">
                                 <div class="carousel-caption">
-                                    <h4 class="font-semibold text-slate-800">Prompt: "A whimsical watercolor painting of a cat wearing a monocle, library background."</h4>
-                                    <p class="text-xs text-slate-600">FlowRL result (preferred) vs. Baseline (refer to paper for full comparison)</p>
+                                    <h4 class="font-indie-flower font-semibold text-slate-800">Prompt:  "3D Pixar style, enchanting fairy with large expressive eyes.. wearing a green dress made of leaves.."</h4>
+                                    <p class="text-xs text-slate-600">FlowRL (right) vs. GenArtist (left) (refer to paper for full comparison)</p>
+                                </div>
+                            </div>
+                             <!-- User Preference Example 4 -->
+                            <div class="carousel-image-item">
+                                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/civit_example_4.png" alt="FlowRL User Preference Example 4" class="w-full h-48 object-contain">
+                                <div class="carousel-caption">
+                                    <h4 class="font-indie-flower font-semibold text-slate-800">Prompt: "wolf's rain, brown, happy, smile, detailed, atmospheric, illusion, the flower that dances in the wind..."</h4>
+                                    <p class="text-xs text-slate-600">FlowRL (right) vs. Most popular flow (left) (refer to paper for full comparison)</p>
                                 </div>
                             </div>
                         </div>
@@ -368,20 +400,67 @@
                     </div>
                 </div>
 
-                <!-- New Workflow Novelty Section -->
+                <!-- New section: Dual Model Guidance Improvement -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-4">Dual Model Guidance: Balancing Quality and Diversity</h3>
+                    <p class="text-slate-600 mb-6">
+                        Our dual-model guidance strategy, inspired by Classifier-Free Guidance (CFG), plays a crucial role in optimizing the trade-off between output quality and workflow diversity. By interpolating logits from our supervised and RL-tuned models, we achieve superior results.
+                    </p>
+                    <h4 class="text-xl font-bold text-slate-800 mb-4 font-inter">Examples of Guidance Improvement</h4>
+                    <p class="text-slate-600 mb-6">
+                        See how dual-model guidance imporves generated image.
+                    </p>
+                    <div class="image-carousel">
+                        <div id="guidanceCarouselImages" class="carousel-images-container">
+                            <!-- Dual Guidance Example 1 -->
+                            <div class="carousel-image-item">
+                                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/cfg_example_1.png" alt="Dual Guidance Example 1" class="w-full h-48 object-contain">
+                                <div class="carousel-caption">
+                                    <h4 class="font-indie-flower font-semibold text-slate-800">Prompt: "The easter bunny is giving laughing Santa claus a carrot..."</h4>
+                                    <p class="text-xs text-slate-600">Left: Without guidance. Right: With Dual Model Guidance</p>
+                                </div>
+                            </div>
+                            <!-- Dual Guidance Example 2 -->
+                            <div class="carousel-image-item">
+                                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/cfg_example_2.png" alt="Dual Guidance Example 2" class="w-full h-48 object-contain">
+                                <div class="carousel-caption">
+                                    <h4 class="font-indie-flower font-semibold text-slate-800">Prompt: "mosaic, traditional media, sunset"</h4>
+                                    <p class="text-xs text-slate-600">Left: Without guidance. Right: With Dual Model Guidance</p>
+                                </div>
+                            </div>
+                            <!-- Dual Guidance Example 3 -->
+                            <div class="carousel-image-item">
+                                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/cfg_example_3.png" alt="Dual Guidance Example 3" class="w-full h-48 object-contain">
+                                <div class="carousel-caption">
+                                    <h4 class="font-indie-flower font-semibold text-slate-800">Prompt: "Cinematic photo of an anthropomorphic penguin sitting in a cafe reading a book and having a coffee."</h4>
+                                    <p class="text-xs text-slate-600">Left: Without guidance. Right: With Dual Model Guidance</p>
+                                </div>
+                            </div>
+                             <!-- Dual Guidance Example 4 -->
+                            <div class="carousel-image-item">
+                                <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/cfg_example_4.png" alt="Dual Guidance Example 4" class="w-full h-48 object-contain">
+                                <div class="carousel-caption">
+                                    <h4 class="font-indie-flower font-semibold text-slate-800">Prompt: "a highly detailed photograph of a rabbit jedi standing with a orange lightsaber glowing in the forest"</h4>
+                                    <p class="text-xs text-slate-600">Left: Without guidance. Right: With Dual Model Guidance</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="guidanceCarouselPrev" class="carousel-nav-btn left">&#10094;</button>
+                        <button id="guidanceCarouselNext" class="carousel-nav-btn right">&#10095;</button>
+                    </div>
+                </div>
+
+                <!-- Workflow Novelty Section -->
                 <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-200">
                     <h3 class="text-2xl font-bold text-slate-800 mb-4">Workflow Novelty: Beyond Memorization</h3>
                     <p class="text-slate-600 mb-6">
                         A key challenge for automated workflow generation is to produce genuinely novel structures, not just recombine existing ones. FlowRL's policy optimization enables it to explore the workflow space effectively, leading to diverse and unique pipelines unseen in the training data.
                     </p>
                     <div class="max-w-xl mx-auto">
-                        <!-- Placeholder for Workflow Novelty Table from paper -->
-                        <img src="https://placehold.co/700x300/d1d5db/374151?text=Workflow+Novelty+Table+(Figure+from+Paper)" alt="Workflow Novelty Table" class="w-full h-auto rounded-lg mb-2 object-contain">
-                        <p class="text-center text-sm text-slate-500 mt-2">Figure: Quantitative comparison of workflow novelty metrics for FlowRL and baselines (e.g., percentage of unique flows at different gamma values).</p>
+                        <!-- Corrected image path for Workflow Novelty Table -->
+                        <img src="https://raw.githubusercontent.com/Ugadot/FlowRL-paper.github.io/main/figs/novelty_table.png" onerror="this.onerror=null;this.src='https://placehold.co/700x300/d1d5db/374151?text=Workflow+Novelty+Table';" alt="Workflow Novelty Table" class="w-full h-48 object-contain">
+                        <p class="text-center text-sm text-slate-500 mt-2">Comparison of workflow novelty metrics for FlowRL and ConfyGen baseline</p>
                     </div>
-                    <p class="text-slate-600 mt-6">
-                        As shown in the table, FlowRL consistently generates a significant percentage of structurally unique workflows. This demonstrates its strong generalization capabilities and its potential for truly creative and adaptable text-to-image pipeline design.
-                    </p>
                 </div>
 
             </div>
@@ -501,6 +580,37 @@
                 });
             }
             updateUserPrefCarousel(); // Initialize carousel position
+
+            // --- Dual Guidance Carousel Logic ---
+            let guidanceCurrentSlide = 0;
+            const guidanceCarouselImagesContainer = document.getElementById('guidanceCarouselImages');
+            const guidanceCarouselItems = document.querySelectorAll('#guidanceCarouselImages .carousel-image-item');
+            const guidanceTotalSlides = guidanceCarouselItems.length;
+
+            function updateGuidanceCarousel() {
+                const offset = -guidanceCurrentSlide * 100;
+                if (guidanceCarouselImagesContainer) {
+                    guidanceCarouselImagesContainer.style.transform = `translateX(${offset}%)`;
+                }
+            }
+
+            const guidanceCarouselPrevBtn = document.getElementById('guidanceCarouselPrev');
+            const guidanceCarouselNextBtn = document.getElementById('guidanceCarouselNext');
+
+            if (guidanceCarouselPrevBtn) {
+                guidanceCarouselPrevBtn.addEventListener('click', () => {
+                    guidanceCurrentSlide = (guidanceCurrentSlide > 0) ? guidanceCurrentSlide - 1 : guidanceTotalSlides - 1;
+                    updateGuidanceCarousel();
+                });
+            }
+
+            if (guidanceCarouselNextBtn) {
+                guidanceCarouselNextBtn.addEventListener('click', () => {
+                    guidanceCurrentSlide = (guidanceCurrentSlide < guidanceTotalSlides - 1) ? guidanceCurrentSlide + 1 : 0;
+                    updateGuidanceCarousel();
+                });
+            }
+            updateGuidanceCarousel(); // Initialize carousel position
 
         });
     </script>
