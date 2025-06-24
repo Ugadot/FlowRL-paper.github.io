@@ -4,7 +4,12 @@ This is the repository that contains source code for the [Policy Optimized Text-
 
 If you find this work useful for your work please cite:
 ```
-@article{placeholder
+@article{gadot2025policy,
+  title={Policy Optimized Text-to-Image Pipeline Design},
+  author={Gadot, Uri and Gal, Rinon and Ziser, Yftah and Chechik, Gal and Mannor, Shie},
+  journal={arXiv preprint arXiv:2505.21478},
+  year={2025},
+  url={https://arxiv.org/abs/2505.21478}
 }
 ```
 
